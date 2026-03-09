@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1978e5",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111821",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .markdown-content h2 {
+            @apply text-xl font-bold border-b border-slate-200 dark:border-slate-700 pb-2 mb-8 mt-20 text-slate-900 dark:text-slate-100;
+        }
+        .markdown-content p {
+            @apply text-slate-700 dark:text-slate-300 leading-relaxed mb-6;
+        }
+        .markdown-content ul {
+            @apply space-y-4 mb-8;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 md:px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8 flex items-center justify-center bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">terminal</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">软件商城</h2>
+</div>
+<div class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">关于我们</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-4 md:gap-8">
+<label class="hidden sm:flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-slate-500 flex border-none bg-slate-100 dark:bg-slate-800 items-center justify-center pl-4 rounded-l-lg" data-icon="search">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-slate-100 focus:outline-0 focus:ring-0 border-none bg-slate-100 dark:bg-slate-800 h-full placeholder:text-slate-500 px-4 rounded-l-none pl-2 text-base font-normal" placeholder="搜索软件..." value=""/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-primary/10 hover:text-primary transition-all">
+<span class="material-symbols-outlined">download</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-primary/10 hover:text-primary transition-all">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex flex-1 justify-center py-8">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1 px-4">
+<!-- Software Hero Section -->
+<div class="flex flex-col md:flex-row gap-6 items-start md:items-center p-6 bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+<div class="bg-primary/5 rounded-2xl p-4 flex items-center justify-center w-32 h-32 shrink-0 border border-primary/10">
+<span class="material-symbols-outlined text-primary text-[64px]" data-alt="Icon for Markdown Editor Pro software">edit_note</span>
+</div>
+<div class="flex flex-col flex-1 gap-1">
+<h1 class="text-slate-900 dark:text-white text-3xl font-bold leading-tight">Markdown 编辑器 Pro</h1>
+<div class="flex items-center gap-2 mt-1">
+<span class="bg-primary/10 text-primary text-xs font-semibold px-2.5 py-0.5 rounded-full">工具 / 生产力</span>
+<span class="text-slate-400 dark:text-slate-500 text-sm">•</span>
+<span class="text-slate-600 dark:text-slate-400 text-sm">版本 2.4.0</span>
+</div>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-2 mt-3 text-slate-600 dark:text-slate-400 text-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-yellow-400 text-lg fill-1">star</span>
+<span class="material-symbols-outlined text-yellow-400 text-lg fill-1">star</span>
+<span class="material-symbols-outlined text-yellow-400 text-lg fill-1">star</span>
+<span class="material-symbols-outlined text-yellow-400 text-lg fill-1">star</span>
+<span class="material-symbols-outlined text-yellow-400 text-lg fill-1">star</span>
+<span class="ml-1 font-bold text-slate-900 dark:text-white">5.0</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">download_for_offline</span>
+<span>1.2万次下载</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2 w-full md:w-auto">
+<button class="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">download</span>
+                                立即获取
+                            </button><div class="flex items-center justify-center gap-2 py-2 px-4 bg-primary/5 border border-primary/20 rounded-lg text-primary">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+<span class="text-sm font-bold">所需积分：50 积分</span>
+</div>
+</div>
+</div>
+<!-- Tab Navigation -->
+<div class="mt-8 border-b border-slate-200 dark:border-slate-800 sticky top-[65px] bg-background-light dark:bg-background-dark z-40">
+<div class="flex gap-8">
+<a class="flex flex-col items-center justify-center border-b-[3px] border-primary text-primary pb-3 pt-4 px-2" href="#">
+<span class="text-sm font-bold tracking-[0.015em]">详情</span>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-transparent text-slate-500 dark:text-slate-400 hover:text-primary pb-3 pt-4 px-2 transition-colors" href="#">
+<span class="text-sm font-bold tracking-[0.015em]">下载</span>
+</a>
+</div>
+</div>
+<!-- Markdown Content Tab -->
+<div class="markdown-content bg-white dark:bg-slate-900 p-8 rounded-xl border border-slate-200 dark:border-slate-800 mt-6 shadow-sm">
+<h2 id="简介">简介</h2>
+<p>
+                            Markdown 编辑器 Pro 是一款专为开发者、技术作家和学术研究人员设计的全功能写作环境。它完美平衡了简洁的界面与强大的功能。
+                        </p>
+<p>
+                            无论您是需要编写技术文档、博客文章，还是学术论文，本软件提供的实时双栏预览、高度可定制的主题库以及无缝的公式渲染都能极大提升您的创作效率。
+                        </p>
+<h2 id="优点">优点</h2>
+<ul class="list-none">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-green-500 shrink-0 mt-0.5">check_circle</span>
+<span><strong>极致性能：</strong> 即使处理数万字的超长文档，预览依旧流畅无卡顿。</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-green-500 shrink-0 mt-0.5">check_circle</span>
+<span><strong>渲染增强：</strong> 支持 LaTeX 数学公式、Mermaid 流程图、甘特图等高级语法。</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-green-500 shrink-0 mt-0.5">check_circle</span>
+<span><strong>多格式导出：</strong> 支持一键导出为 PDF, HTML, Word 及多种图床直连。</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-green-500 shrink-0 mt-0.5">check_circle</span>
+<span><strong>Vim 模式：</strong> 为习惯于终端的操作者提供完整的 Vim 按键绑定支持。</span>
+</li>
+</ul>
+<h2 id="缺点">缺点</h2>
+<ul class="list-none">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-red-500 shrink-0 mt-0.5">cancel</span>
+<span><strong>学习曲线：</strong> 高级配置可能需要一定的 YAML 或 CSS 基础。</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-red-500 shrink-0 mt-0.5">cancel</span>
+<span><strong>资源占用：</strong> 在极低内存的旧款设备上开启多文档时会有性能损耗。</span>
+</li>
+</ul>
+<h2 id="使用教程">使用教程</h2>
+<p>
+    快速上手 Markdown 编辑器 Pro，只需遵循以下几个简单步骤：
+</p>
+<ul class="list-none space-y-4">
+<li class="flex items-start gap-3">
+<span class="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0">1</span>
+<span><strong>新建文档：</strong> 点击左上角的“新建”按钮或使用快捷键 <kbd class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded border border-slate-300 dark:border-slate-600 text-xs">Ctrl + N</kbd>。</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0">2</span>
+<span><strong>开启预览：</strong> 默认开启双栏实时预览。您可以点击工具栏右侧的布局图标来切换“仅编辑”、“仅预览”或“分屏”模式。</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0">3</span>
+<span><strong>插入数学公式：</strong> 使用标准 LaTeX 语法，例如：</span>
+</li>
+</ul>
+<div class="bg-slate-900 rounded-lg p-4 my-6 overflow-x-auto">
+<pre class="text-blue-400 font-mono text-sm leading-relaxed"><code>$$
+\int_{a}^{b} f(x) dx = F(b) - F(a)
+$$</code></pre>
+</div>
+<ul class="list-none space-y-4">
+<li class="flex items-start gap-3">
+<span class="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0">4</span>
+<span><strong>导出文件：</strong> 写作完成后，选择“文件” -&gt; “导出”，即可选择 PDF 或 HTML 格式进行保存。</span>
+</li>
+</ul></div>
+<!-- User Reviews Section -->
+<div class="mt-10 mb-20">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">用户评价</h2>
+<button class="bg-primary/10 hover:bg-primary/20 text-primary font-bold py-2 px-6 rounded-lg transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">rate_review</span>
+                                我要评价
+                            </button>
+</div>
+<div class="grid gap-4">
+<!-- Comment 1 -->
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="User profile avatar icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbucBbJoraQJzrhEkY4a7tfU4oTEXN3OiRKHYtacd5P2go3Zf1VO_LDNLAyjw_X3OJXC0Kivcv7zRssfQXWceWObwIuMIevw-QB49HSx_paCNdGC4yDYz7QPZG6H7bYnYQJ2Tcg7j2a6TNY-nb-neb4PY2APZWtQBRfrG_Y-D9I4Z_Zg9-BQgflGblGdEbj57ljRimWpnbFuqrESWDfNL6KQYWwnSpL96Jl-oBFm5IkoVZwmhWxIaYKpCCRWIR9OZjH2eaUcpKY9k"/>
+</div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white">代码诗人</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">2023-11-20 14:30</p>
+</div>
+</div>
+<div class="flex text-yellow-400">
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+</div>
+</div>
+<p class="text-slate-700 dark:text-slate-300 leading-relaxed">
+                                    这是我用过最好的 Markdown 编辑器。尤其是对 Mermaid 的支持非常完美，画流程图再也不用切工具了。积分花得很值！
+                                </p>
+</div>
+<!-- Comment 2 -->
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="User profile avatar icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDL-Vq9XSh4qOa3kFPKb3D_YNxv5n6lg6CbVnYUMDoKMcoL-cHXyocesYPNBkT765sPmCOZ8P0P82vtF7nqj4i5RW4hdHV69eNG5mOhXzAeiks_5nttasPLpdUCfVrj7_bOSCUkFTfYv9jBLKMMs773tzM190y8GPJ17qmphZYAGgP6zmM_VwBIsSBrjKlpZdBqPVauNtzhXp7AlOp4gWH3mDtb4cpo3guMoSjA6ItXR63dG3YJkKcxofC_C10eatuuoBqXqvl-0Z8"/>
+</div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white">写Bug达人</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">2023-11-18 09:15</p>
+</div>
+</div>
+<div class="flex text-yellow-400">
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+</div>
+</div>
+<p class="text-slate-700 dark:text-slate-300 leading-relaxed">
+                                    导出功能很强大，但是 PDF 的主题还是少了点，希望能增加更多中文字体支持。整体推荐。
+                                </p>
+</div>
+<div class="flex justify-center mt-4">
+<button class="text-primary font-semibold hover:underline flex items-center gap-1">
+                                    查看更多评论
+                                    <span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-12 px-4">
+<div class="max-w-[960px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined">terminal</span>
+<span class="text-xl font-bold text-slate-900 dark:text-white">软件商城</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm">
+                            为您发现、分享和获取最优质的开发工具与生产力软件。
+                        </p>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-bold text-slate-900 dark:text-white">快速链接</h4>
+<nav class="flex flex-col gap-2">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm transition-colors" href="#">热门软件</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm transition-colors" href="#">最新上架</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm transition-colors" href="#">用户协议</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-bold text-slate-900 dark:text-white">联系我们</h4>
+<p class="text-slate-600 dark:text-slate-400 text-sm">如有问题，请发送邮件至：</p>
+<a class="text-primary font-semibold text-sm" href="mailto:support@software.com">support@softwareshop.com</a>
+</div>
+</div>
+<div class="max-w-[960px] mx-auto mt-12 pt-8 border-t border-slate-100 dark:border-slate-800 text-center">
+<p class="text-slate-400 text-xs">© 2024 软件商城 - 版权所有</p>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

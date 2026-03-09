@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1978e5",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111821",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>个人中心 - 设置中心</title>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<main class="flex flex-1 items-center justify-center py-12 px-4">
+<div class="layout-content-container flex flex-col w-full max-w-[800px]">
+<!-- Sidebar Navigation -->
+<!-- Main Content Area: Setting Center -->
+<section class="flex-1 bg-white dark:bg-slate-900 rounded-xl p-6 md:p-8 border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="mb-8">
+<h2 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">设置中心</h2>
+<p class="text-slate-500 mt-1">管理您的个人资料、账户安全及获取官方支持</p>
+</div>
+<!-- Personal Profile Settings -->
+<div class="space-y-6">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="w-1 h-5 bg-primary rounded-full"></span>
+                            个人资料设置
+                        </h3>
+<div class="grid grid-cols-1 gap-6">
+<!-- Avatar Change -->
+<div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50">
+<div class="flex items-center gap-4">
+<div class="relative group cursor-pointer">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-16 w-16 border-2 border-white dark:border-slate-700 shadow-sm" data-alt="Large user avatar for replacement" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAr57cq7Ti5shgHK6yorr0V08BeOoj1P5bC5C5GycVwbpxZjbwcFQuZPEDtqiC5tTVvN3Kcvw8JYZzbf-mxLi-LpZOBF8pcFh9orLLV6VppsXaZT-uq7N0is0Mf8JdbNjkpeZRVWBu4wrAH76c-LhKyzuJ0VeficmasF0I9J3xppgod-KFF9CMS3yqv6w-S4X7Hox8AJaQHkKgxCJgrogwRQtmXHHnEwvxOz3lZXo5LZbvASKzfcAD_yDTuFTXCZhSFzdw6w0fINuI");'></div>
+<div class="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white">photo_camera</span>
+</div>
+</div>
+<div>
+<p class="text-base font-semibold text-slate-900 dark:text-white">更换头像</p>
+<p class="text-sm text-slate-500">点击头像或右侧按钮上传新头像</p>
+</div>
+</div>
+<button class="flex items-center justify-center text-primary hover:bg-primary/10 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<!-- Nickname, Phone, Email -->
+<div class="space-y-4">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">昵称</label>
+<div class="relative">
+<input class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2.5 focus:ring-primary focus:border-primary" type="text" value="设计师小张"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">手机号绑定</label>
+<div class="flex items-center gap-2">
+<input class="flex-1 bg-slate-100 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2.5 text-slate-500" disabled="" type="text" value="138****8888"/>
+<button class="px-4 py-2.5 text-sm font-medium text-primary bg-primary/10 rounded-lg hover:bg-primary/20 transition-colors whitespace-nowrap">修改绑定</button>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">邮箱绑定</label>
+<div class="flex items-center gap-2">
+<input class="flex-1 bg-slate-100 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2.5 text-slate-500" disabled="" type="text" value="design***@example.com"/>
+<button class="px-4 py-2.5 text-sm font-medium text-primary bg-primary/10 rounded-lg hover:bg-primary/20 transition-colors whitespace-nowrap">解绑/修改</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Account Security -->
+<div class="pt-6 border-t border-slate-100 dark:border-slate-800">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-4">
+<span class="w-1 h-5 bg-primary rounded-full"></span>
+                                账户安全
+                            </h3>
+<div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">lock</span>
+<div>
+<p class="text-sm font-semibold text-slate-900 dark:text-white">登录密码</p>
+<p class="text-xs text-slate-500">建议定期修改密码以保障账户安全</p>
+</div>
+</div>
+<button class="px-6 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">修改密码</button>
+</div>
+</div>
+<!-- Contact Us -->
+<div class="pt-6 border-t border-slate-100 dark:border-slate-800">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-4">
+<span class="w-1 h-5 bg-primary rounded-full"></span>
+                                联系我们
+                            </h3>
+<div class="bg-primary/5 dark:bg-primary/10 border border-primary/10 rounded-xl p-6 flex flex-col items-center text-center">
+<div class="bg-white p-3 rounded-lg shadow-sm mb-4">
+<img alt="WeChat Community QR Code" class="w-32 h-32" data-alt="QR Code for official WeChat group community" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbrguIxs93MO-PXc6YRM52Sxzuniu5xArZMusdV35VBxSwwRV-HE__sBijndyNpRMuQG6EYcaEO-hBCI3dBgXR_sSiS9C9Ira8MHhWnPOnFwqCVEqZCXf-0hVVtpkixbtIddARLcgPgd_z_1QfhHOonFftzSNs5DEHRktw6S_D36zvrhkwLwxhDiqK-2AEQo6YNNlxrE8-QsXBwkz0-PbYoFGA9jEZUKnA_RZiQMPyMvYmtUX6qo9_L5z2kIIL-pwa0lzEMF9f4bw"/>
+</div>
+<p class="text-base font-bold text-slate-900 dark:text-white">加入官方交流群</p>
+<p class="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-xs">获取最新资源、技术动态，并与数千名同行实时交流</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer Consistent with original screen -->
+</div>
+</div>
+</body></html>

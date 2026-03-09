@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1978e5",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111821",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "system-ui", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 md:px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">account_balance_wallet</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em]">积分充值</h2>
+</div>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</header>
+<main class="flex flex-1 justify-center py-6 md:py-10 px-4 md:px-0">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1 gap-6">
+<section class="flex flex-col md:flex-row gap-4">
+<div class="flex-1 flex flex-col gap-4 bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">person</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-slate-100 text-base font-semibold">当前账户：云端极客</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm">普通会员</p>
+</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-2 rounded-xl p-6 bg-primary text-white shadow-lg shadow-primary/20">
+<p class="text-white/80 text-sm font-medium">当前余额</p>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-bold tracking-tight">2,580</span>
+<span class="text-sm font-medium">积分</span>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold mb-4">选择充值套餐</h3>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+<button class="flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 border-slate-100 dark:border-slate-800 hover:border-primary/50 transition-colors bg-slate-50 dark:bg-slate-800/50">
+<span class="text-slate-900 dark:text-slate-100 text-lg font-bold">100 积分</span>
+<span class="text-primary font-medium">¥10</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 border-slate-100 dark:border-slate-800 hover:border-primary/50 transition-colors bg-slate-50 dark:bg-slate-800/50">
+<span class="text-slate-900 dark:text-slate-100 text-lg font-bold">500 积分</span>
+<span class="text-primary font-medium">¥50</span>
+</button>
+<button class="relative flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 border-primary bg-primary/5 shadow-md">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">最实惠</div>
+<span class="text-slate-900 dark:text-slate-100 text-lg font-bold">1000 积分</span>
+<span class="text-primary font-medium">¥100</span>
+</button>
+<button class="relative flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 border-slate-100 dark:border-slate-800 hover:border-primary/50 transition-colors bg-slate-50 dark:bg-slate-800/50">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">人气最高</div>
+<span class="text-slate-900 dark:text-slate-100 text-lg font-bold">2000 积分</span>
+<span class="text-primary font-medium">¥200</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 p-4 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-slate-400">edit_note</span>
+<span class="text-slate-600 dark:text-slate-400 text-sm font-medium">自定义金额</span>
+</button>
+</div>
+</section>
+<section class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold mb-4">支付方式</h3>
+<div class="flex items-center justify-between p-4 rounded-lg border-2 border-primary bg-primary/5">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-[#07C160] rounded flex items-center justify-center text-white">
+<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20">
+<path d="M12,2C6.47,2,2,5.7,2,10.25c0,2.6,1.45,4.91,3.71,6.34L4.85,19.2c-0.12,0.3,0.02,0.64,0.32,0.76 c0.09,0.03,0.18,0.05,0.27,0.05c0.21,0,0.41-0.11,0.51-0.31l1.58-2.98C8.52,17.2,9.73,17.43,11,17.48c0.33,0.01,0.67,0.02,1,0.02 c5.53,0,10-3.7,10-8.25S17.53,2,12,2z M12.8,7.9c0.2,0.1,0.3,0.3,0.3,0.5v1.2h1.2c0.2,0,0.4,0.1,0.5,0.3c0.1,0.2,0.1,0.4,0,0.5 c-0.1,0.1-0.3,0.2-0.5,0.2h-1.2v1.2c0,0.2-0.1,0.4-0.3,0.5s-0.4,0.1-0.5,0c-0.2-0.1-0.3-0.3-0.3-0.5v-1.2H10.8 c-0.2,0-0.4-0.1-0.5-0.3c-0.1-0.2-0.1-0.4,0-0.5c0.1-0.1,0.3-0.2,0.5-0.2h1.2V8.4c0-0.2,0.1-0.4,0.3-0.5C12.4,7.8,12.6,7.8,12.8,7.9z"></path>
+</svg>
+</div>
+<span class="text-slate-900 dark:text-slate-100 font-semibold">微信支付</span>
+</div>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</div>
+</section>
+<div class="flex flex-col gap-4">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl text-lg shadow-lg shadow-primary/25 transition-all active:scale-[0.98]">
+                        立即支付 ¥100.00
+                    </button>
+<div class="p-6 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-2 mb-3 text-slate-900 dark:text-slate-100 font-semibold">
+<span class="material-symbols-outlined text-sm">info</span>
+<span>充值说明</span>
+</div>
+<ul class="text-sm text-slate-500 dark:text-slate-400 space-y-2 list-disc pl-4">
+<li>充值比例：人民币与积分比例为 1:10 (1元 = 10积分)。</li>
+<li>虚拟商品：积分属于虚拟商品，充值成功后不支持退款，请确认后购买。</li>
+<li>到账时间：支付完成后积分通常实时到账，如遇延迟请联系在线客服。</li>
+<li>合法合规：请勿通过非法手段获取积分，违者将被封禁账号且不予退还余额。</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+<footer class="border-t border-slate-200 dark:border-slate-800 py-6 text-center text-slate-400 text-xs">
+<p>© 2024 资源共享平台 版权所有</p>
+</footer>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1978e5",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111821",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "system-ui", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="layout-container flex h-full grow flex-col">
+<div class="px-4 md:px-10 lg:px-40 flex flex-1 justify-center py-10">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1 gap-6">
+<!-- Page Title -->
+<div class="flex flex-col gap-2 px-4">
+<h1 class="text-2xl font-bold tracking-tight">积分管理</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm">管理您的积分余额，查看所有获取与消费记录</p>
+</div>
+<!-- Points Balance Card -->
+<div class="p-4 @container">
+<div class="flex flex-col items-stretch justify-start rounded-xl @xl:flex-row @xl:items-center shadow-sm border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden">
+<!-- Card Visual/Icon Area -->
+<div class="w-full @xl:w-1/3 bg-primary/10 flex items-center justify-center aspect-video @xl:aspect-square relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent"></div>
+<span class="material-symbols-outlined text-primary text-6xl relative z-10">account_balance_wallet</span>
+</div>
+<!-- Card Content -->
+<div class="flex w-full grow flex-col items-stretch justify-center gap-4 p-6">
+<div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal">当前积分余额</p>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="text-primary text-4xl font-bold leading-tight tracking-tight">2,580</span>
+<span class="text-slate-400 text-sm font-normal">Points</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<button class="flex flex-1 min-w-[120px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-semibold transition-colors hover:bg-primary/90">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+<span class="truncate">立即充值</span>
+</button>
+<button class="flex flex-1 min-w-[120px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-sm font-semibold transition-colors hover:bg-slate-200 dark:hover:bg-slate-700">
+<span class="material-symbols-outlined text-lg">redeem</span>
+<span class="truncate">积分兑换</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Transaction History Section -->
+<div class="flex flex-col gap-4">
+<!-- Tab Navigation -->
+<div class="px-4">
+<div class="flex border-b border-slate-200 dark:border-slate-800 gap-8 overflow-x-auto">
+<a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-2 shrink-0" href="#">
+<p class="text-sm font-bold leading-normal">全部记录</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-2 shrink-0 hover:text-primary transition-colors" href="#">
+<p class="text-sm font-medium leading-normal">充值记录</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-2 shrink-0 hover:text-primary transition-colors" href="#">
+<p class="text-sm font-medium leading-normal">消费记录</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-2 shrink-0 hover:text-primary transition-colors" href="#">
+<p class="text-sm font-medium leading-normal">奖励记录</p>
+</a>
+</div>
+</div>
+<!-- Filter/Search Placeholder (Visual enhancement) -->
+<div class="px-4 flex justify-end">
+<div class="relative w-full max-w-xs">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary" placeholder="搜索订单号或类型..." type="text"/>
+</div>
+</div>
+<!-- Table Container -->
+<div class="px-4 @container">
+<div class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50">
+<th class="px-6 py-4 text-slate-700 dark:text-slate-200 text-sm font-semibold">记录类型</th>
+<th class="px-6 py-4 text-slate-700 dark:text-slate-200 text-sm font-semibold text-right">变动数额</th>
+<th class="px-6 py-4 text-slate-700 dark:text-slate-200 text-sm font-semibold text-right">剩余余额</th>
+<th class="px-6 py-4 text-slate-700 dark:text-slate-200 text-sm font-semibold">变动时间</th>
+<th class="px-6 py-4 text-slate-700 dark:text-slate-200 text-sm font-semibold">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<!-- Row 1: Recharge -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-500 bg-blue-50 dark:bg-blue-500/10 p-1.5 rounded-lg">payments</span>
+<span class="text-slate-700 dark:text-slate-200 text-sm font-medium">在线充值</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="text-emerald-600 dark:text-emerald-400 text-sm font-bold">+1,000</span>
+</td>
+<td class="px-6 py-4 text-right text-slate-600 dark:text-slate-400 text-sm font-medium">2,580</td>
+<td class="px-6 py-4 text-slate-500 dark:text-slate-400 text-sm">2023-11-20 14:30:22</td>
+<td class="px-6 py-4">
+<button class="text-primary hover:underline text-sm font-medium">详情</button>
+</td>
+</tr>
+<!-- Row 2: Download Cost -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-orange-500 bg-orange-50 dark:bg-orange-500/10 p-1.5 rounded-lg">download</span>
+<span class="text-slate-700 dark:text-slate-200 text-sm font-medium">资源下载 - UI Kit Pro</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="text-rose-600 dark:text-rose-400 text-sm font-bold">-150</span>
+</td>
+<td class="px-6 py-4 text-right text-slate-600 dark:text-slate-400 text-sm font-medium">1,580</td>
+<td class="px-6 py-4 text-slate-500 dark:text-slate-400 text-sm">2023-11-18 09:15:05</td>
+<td class="px-6 py-4">
+<button class="text-primary hover:underline text-sm font-medium">详情</button>
+</td>
+</tr>
+<!-- Row 3: Upload Reward -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-purple-500 bg-purple-50 dark:bg-purple-500/10 p-1.5 rounded-lg">upload_file</span>
+<span class="text-slate-700 dark:text-slate-200 text-sm font-medium">上传奖励 - 模板文档</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="text-emerald-600 dark:text-emerald-400 text-sm font-bold">+50</span>
+</td>
+<td class="px-6 py-4 text-right text-slate-600 dark:text-slate-400 text-sm font-medium">1,730</td>
+<td class="px-6 py-4 text-slate-500 dark:text-slate-400 text-sm">2023-11-15 18:20:44</td>
+<td class="px-6 py-4">
+<button class="text-primary hover:underline text-sm font-medium">详情</button>
+</td>
+</tr>
+<!-- Row 4: Download Cost -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-orange-500 bg-orange-50 dark:bg-orange-500/10 p-1.5 rounded-lg">download</span>
+<span class="text-slate-700 dark:text-slate-200 text-sm font-medium">资源下载 - Icon Pack</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="text-rose-600 dark:text-rose-400 text-sm font-bold">-30</span>
+</td>
+<td class="px-6 py-4 text-right text-slate-600 dark:text-slate-400 text-sm font-medium">1,680</td>
+<td class="px-6 py-4 text-slate-500 dark:text-slate-400 text-sm">2023-11-12 11:05:12</td>
+<td class="px-6 py-4">
+<button class="text-primary hover:underline text-sm font-medium">详情</button>
+</td>
+</tr>
+<!-- Row 5: Recharge -->
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-500 bg-blue-50 dark:bg-blue-500/10 p-1.5 rounded-lg">payments</span>
+<span class="text-slate-700 dark:text-slate-200 text-sm font-medium">在线充值</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="text-emerald-600 dark:text-emerald-400 text-sm font-bold">+1,000</span>
+</td>
+<td class="px-6 py-4 text-right text-slate-600 dark:text-slate-400 text-sm font-medium">1,710</td>
+<td class="px-6 py-4 text-slate-500 dark:text-slate-400 text-sm">2023-11-10 15:45:30</td>
+<td class="px-6 py-4">
+<button class="text-primary hover:underline text-sm font-medium">详情</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+<p class="text-xs text-slate-500 dark:text-slate-400">显示 1 到 5 条，共 48 条记录</p>
+<div class="flex gap-2">
+<button class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-lg leading-none">chevron_left</span>
+</button>
+<button class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-primary text-white font-medium text-xs px-3">1</button>
+<button class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 text-xs px-3">2</button>
+<button class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 text-xs px-3">3</button>
+<button class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined text-lg leading-none">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Tips / FAQ Section -->
+<div class="px-4 py-6 mt-4">
+<div class="bg-primary/5 dark:bg-primary/10 rounded-xl p-6 border border-primary/10">
+<h3 class="text-slate-900 dark:text-slate-100 font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">info</span>
+                            积分使用须知
+                        </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex gap-3">
+<span class="text-primary font-bold">01.</span>
+<p class="text-sm text-slate-600 dark:text-slate-400">积分通过在线充值获得，1元人民币 = 10积分。</p>
+</div>
+<div class="flex gap-3">
+<span class="text-primary font-bold">02.</span>
+<p class="text-sm text-slate-600 dark:text-slate-400">下载付费资源将扣除相应积分，下载后24小时内可免费重复下载。</p>
+</div>
+<div class="flex gap-3">
+<span class="text-primary font-bold">03.</span>
+<p class="text-sm text-slate-600 dark:text-slate-400">上传优质资源并被他人下载，您将获得该资源价值50%的积分奖励。</p>
+</div>
+<div class="flex gap-3">
+<span class="text-primary font-bold">04.</span>
+<p class="text-sm text-slate-600 dark:text-slate-400">积分不可提现，仅限在本平台兑换/购买资源使用。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

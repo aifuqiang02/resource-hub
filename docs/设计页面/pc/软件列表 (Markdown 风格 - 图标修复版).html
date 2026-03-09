@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1978e5",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111821",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<title>臻享资源 - 探索优质数字资源</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">deployed_code</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight">臻享资源</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">软件</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">AI工具</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">社区</a><a class="text-sm font-medium hover:text-primary transition-colors" href="#">关于我们</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-slate-600 dark:text-slate-400 hover:text-primary">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="size-9 rounded-full bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
+<span class="material-symbols-outlined">person</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow">
+<!-- Hero Search Section -->
+<section class="pt-20 pb-12 px-4">
+<div class="max-w-3xl mx-auto text-center">
+<h2 class="text-4xl md:text-5xl font-bold mb-8 tracking-tight">发现您的下一个生产力工具</h2>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+</div>
+<input class="block w-full pl-14 pr-24 py-5 bg-white dark:bg-slate-900 border-none rounded-2xl shadow-xl shadow-primary/5 focus:ring-2 focus:ring-primary text-lg placeholder:text-slate-400" placeholder="搜索软件、插件、AI 提示词或设计素材..." type="text"/>
+<div class="absolute inset-y-2 right-2">
+<button class="h-full px-6 bg-primary text-white font-semibold rounded-xl hover:bg-primary/90 transition-all">
+                            搜索
+                        </button>
+</div>
+</div>
+<div class="mt-6 flex flex-wrap justify-center gap-3">
+<span class="text-sm text-slate-500">热搜:</span>
+<a class="text-sm text-primary hover:underline" href="#">Photoshop 2024</a>
+<a class="text-sm text-primary hover:underline" href="#">Midjourney 提示词</a>
+<a class="text-sm text-primary hover:underline" href="#">Python 自动化</a>
+<a class="text-sm text-primary hover:underline" href="#">面试题库</a>
+</div>
+</div>
+</section>
+<!-- Resource Results Grid -->
+<section class="max-w-7xl mx-auto px-4 py-12"><div class="max-w-4xl mx-auto bg-white dark:bg-slate-900 shadow-sm border border-slate-200 dark:border-slate-800 rounded-lg p-8 md:p-12">
+<div class="flex items-center justify-between mb-10 pb-4 border-b border-slate-200 dark:border-slate-800">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100">精选资源报告</h3>
+<span class="text-sm text-slate-500">共 2,480 条结果</span>
+</div>
+<!-- Software Item 1 -->
+<div class="mb-12">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary text-3xl">image_search</span>
+<h4 class="text-xl font-bold text-slate-900 dark:text-slate-100">Adobe Photoshop 2024</h4>
+<span class="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-500 text-xs rounded">软件 / 设计</span>
+</div>
+<div class="flex items-center gap-6 text-sm text-slate-500 mb-6">
+<span class="flex items-center gap-1 text-orange-500 font-medium">
+<span class="material-symbols-outlined text-sm fill-1">star</span> 4.9 (5星好评)
+            </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">download</span> 1.2k 次下载
+            </span>
+<span class="text-primary font-bold">10 积分</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed italic border-l-4 border-slate-200 dark:border-slate-700 pl-4">
+            全球领先的图像处理软件，支持 AI 创成式填充功能，助力创意无限可能。它是行业标准的图像编辑解决方案，为设计师提供无与伦比的创作自由度。
+        </p>
+<div class="grid md:grid-cols-2 gap-8 mb-8">
+<div>
+<h5 class="font-bold text-sm text-slate-900 dark:text-slate-100 mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-green-500 text-lg">check_circle</span> 优点 (Pros)
+                </h5>
+<ul class="list-disc list-inside text-sm text-slate-600 dark:text-slate-400 space-y-1">
+<li>强大的 AI 创成式填充功能</li>
+<li>完善的图层管理与非破坏性编辑</li>
+<li>海量的插件与预设生态系统</li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-sm text-slate-900 dark:text-slate-100 mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-red-500 text-lg">cancel</span> 缺点 (Cons)
+                </h5>
+<ul class="list-disc list-inside text-sm text-slate-600 dark:text-slate-400 space-y-1">
+<li>订阅费用相对较高</li>
+<li>对硬件配置有一定要求</li>
+<li>初学者学习曲线较陡峭</li>
+</ul>
+</div>
+</div>
+<hr class="border-t border-dashed border-slate-300 dark:border-slate-700"/>
+</div>
+<!-- Software Item 2 -->
+<div class="mb-12">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-green-600 text-3xl">auto_awesome</span>
+<h4 class="text-xl font-bold text-slate-900 dark:text-slate-100">MJ 专业提示词库</h4>
+<span class="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-500 text-xs rounded">AI工具 / 素材</span>
+</div>
+<div class="flex items-center gap-6 text-sm text-slate-500 mb-6">
+<span class="flex items-center gap-1 text-orange-500 font-medium">
+<span class="material-symbols-outlined text-sm fill-1">star</span> 4.8 (5星好评)
+            </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">download</span> 856 次下载
+            </span>
+<span class="text-green-600 font-bold">免费</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed italic border-l-4 border-slate-200 dark:border-slate-700 pl-4">
+            包含1000+精心调试的 Midjourney 绘画指令，涵盖写实、插画、3D等多种风格。旨在帮助用户快速掌握生成式 AI 艺术创作。
+        </p>
+<div class="grid md:grid-cols-2 gap-8 mb-8">
+<div>
+<h5 class="font-bold text-sm text-slate-900 dark:text-slate-100 mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-green-500 text-lg">check_circle</span> 优点 (Pros)
+                </h5>
+<ul class="list-disc list-inside text-sm text-slate-600 dark:text-slate-400 space-y-1">
+<li>分类细致，覆盖多种视觉风格</li>
+<li>附带高质量生成示例图参考</li>
+<li>完全免费，获取门槛低</li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-sm text-slate-900 dark:text-slate-100 mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-red-500 text-lg">cancel</span> 缺点 (Cons)
+                </h5>
+<ul class="list-disc list-inside text-sm text-slate-600 dark:text-slate-400 space-y-1">
+<li>提示词更新频率随模型变化</li>
+<li>部分高级指令需特定版本支持</li>
+</ul>
+</div>
+</div>
+<hr class="border-t border-dashed border-slate-300 dark:border-slate-700"/>
+</div>
+<!-- Software Item 3 -->
+<div class="mb-12">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-blue-600 text-3xl">terminal</span>
+<h4 class="text-xl font-bold text-slate-900 dark:text-slate-100">办公自动化脚本合集</h4>
+<span class="px-2 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-500 text-xs rounded">软件 / 效率</span>
+</div>
+<div class="flex items-center gap-6 text-sm text-slate-500 mb-6">
+<span class="flex items-center gap-1 text-orange-500 font-medium">
+<span class="material-symbols-outlined text-sm fill-1">star</span> 4.7 (5星好评)
+            </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">download</span> 2.1k 次下载
+            </span>
+<span class="text-primary font-bold">5 积分</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed italic border-l-4 border-slate-200 dark:border-slate-700 pl-4">
+            基于 Python 的 Excel 处理、文件分类及邮件自动发送脚本，提升工作效率 200%。专为处理繁琐重复劳动的职场人士设计。
+        </p>
+<div class="grid md:grid-cols-2 gap-8 mb-8">
+<div>
+<h5 class="font-bold text-sm text-slate-900 dark:text-slate-100 mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-green-500 text-lg">check_circle</span> 优点 (Pros)
+                </h5>
+<ul class="list-disc list-inside text-sm text-slate-600 dark:text-slate-400 space-y-1">
+<li>源码开放，可根据需求自行修改</li>
+<li>显著减少人工操作错误</li>
+<li>提供详尽的运行环境配置说明</li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-sm text-slate-900 dark:text-slate-100 mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-red-500 text-lg">cancel</span> 缺点 (Cons)
+                </h5>
+<ul class="list-disc list-inside text-sm text-slate-600 dark:text-slate-400 space-y-1">
+<li>需要基本的 Python 环境安装知识</li>
+<li>GUI 界面较为简陋，以命令行操作为主</li>
+</ul>
+</div>
+</div>
+<hr class="border-t border-dashed border-slate-300 dark:border-slate-700"/>
+</div>
+<div class="py-6 flex flex-col items-center justify-center gap-3 text-slate-400">
+<span class="material-symbols-outlined animate-bounce">keyboard_double_arrow_down</span>
+<p class="text-sm italic font-display">继续向下滑动阅读完整报告...</p>
+</div>
+</div></section>
+</main>
+<!-- Footer -->
+<footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-12 px-4 mt-auto">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
+<div class="max-w-sm">
+<div class="flex items-center gap-2 mb-4">
+<div class="text-primary">
+<span class="material-symbols-outlined text-2xl">deployed_code</span>
+</div>
+<h3 class="text-lg font-bold">臻享资源</h3>
+</div>
+<p class="text-sm text-slate-500 leading-relaxed">
+                    我们致力于为创意工作者、开发者和职场新人提供最高质量的数字资源。
+                    所有资源经过人工审核，确保安全可靠。
+                </p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-8 text-sm">
+<div class="flex flex-col gap-3">
+<h4 class="font-bold text-slate-900 dark:text-slate-100">快速链接</h4>
+<a class="text-slate-500 hover:text-primary" href="#">关于我们</a>
+<a class="text-slate-500 hover:text-primary" href="#">发布资源</a>
+<a class="text-slate-500 hover:text-primary" href="#">积分商城</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-bold text-slate-900 dark:text-slate-100">帮助支持</h4>
+<a class="text-slate-500 hover:text-primary" href="#">下载指南</a>
+<a class="text-slate-500 hover:text-primary" href="#">版权申明</a>
+<a class="text-slate-500 hover:text-primary" href="#">联系客服</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-bold text-slate-900 dark:text-slate-100">加入社区</h4>
+<div class="flex flex-col gap-2">
+<div class="w-24 h-24 bg-slate-100 dark:bg-slate-800 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
+<div class="w-full h-full flex items-center justify-center text-slate-300">
+<span class="material-symbols-outlined text-4xl">qr_code_2</span>
+</div>
+</div>
+<p class="text-[10px] text-slate-500 text-center">扫码加入微信群</p>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-slate-100 dark:border-slate-800 text-center text-xs text-slate-400">
+            © 2024 臻享资源 Premium Resources. All rights reserved.
+        </div>
+</footer>
+</body></html>

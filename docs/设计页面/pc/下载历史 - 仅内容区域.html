@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1978e5",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111821",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<title>个人中心 - 下载历史</title>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Top Navigation Bar -->
+<main class="flex flex-1 flex-col max-w-[1440px] mx-auto w-full px-4 lg:px-20 py-8 justify-center">
+<!-- Sidebar -->
+<!-- Main Content Area -->
+<section class="flex-1 flex flex-col gap-6">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 text-sm">
+<a class="text-slate-500 hover:text-primary" href="#">个人中心</a>
+<span class="material-symbols-outlined text-slate-400 text-xs leading-none">chevron_right</span>
+<span class="text-slate-900 dark:text-white font-medium">下载历史</span>
+</nav>
+<!-- Page Header -->
+<div class="flex flex-col gap-2">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">下载历史</h2>
+<p class="text-slate-500 dark:text-slate-400 text-sm">在这里您可以查看并重新下载过去获取的软件资源。</p>
+</div>
+<!-- Table Content -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">软件名称</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">版本</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">下载日期</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">消耗积分</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 text-right">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img alt="App Icon" class="h-8 w-8" data-alt="Blue creative software app icon logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIoDV-U9o-cW4-0Pmfk87zFd522EYOvKsGNEEEpY7Ii_en3yB7r74qKN6hvruo9eYIA57C3MO3ncTruykeboJNNY719zAD1cs0aIzVLQ0QUf14yOh_Lq6Q4RbD4Z3NE4X1g5oU9s5lxEYjL1jtEfWcydSBOo2CMACoUqbgOaapsRx-2NztmMUdNHKShaT1RTztUFheifTHo0VhCzlNzbpBIR_2niMYnKklaGnbkm1GjFZfSfpZraZxzR1-X4-2R6fFWqkgwKT1E14"/>
+</div>
+<span class="font-semibold text-slate-900 dark:text-white text-sm">Adobe Photoshop 2024</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">v25.0.1</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">2024-03-15</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                                            -10 积分
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white text-xs font-bold px-4 py-2 rounded-lg transition-all shadow-sm">
+<span class="material-symbols-outlined text-sm">download</span>
+                                            再次下载
+                                        </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img alt="App Icon" class="h-8 w-8" data-alt="Dark blue code editor app icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtaYgu_R4_tK-wRWbCghmMXrtYqyEK8V-MDiHeG1AAWljR_vkWppGuMkzrvAYi5leemZruHPHY4lEM5-et5b1YuGiGwKy21zZK3gosKdIffnVl8cttQZsU7GKlVDhWYth2TPzZ6R_VDaQKcD5PBeCkGAP1zfuYCsg-tOwJOTERQT7_hwwTa0lB1WY_xhGTPSNl2ogvybf_W_jTh_rSG1Bzg4KeTm2GzOX-4aMIfGOMo9X5oe1csVORU0WLp2SiokvIY2Z-FFVxCjA"/>
+</div>
+<span class="font-semibold text-slate-900 dark:text-white text-sm">Visual Studio Code</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">v1.87.2</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">2024-03-10</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary">
+                                            免费
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white text-xs font-bold px-4 py-2 rounded-lg transition-all shadow-sm">
+<span class="material-symbols-outlined text-sm">download</span>
+                                            再次下载
+                                        </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img alt="App Icon" class="h-8 w-8" data-alt="Orange design tool app icon logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzwH8050_EN24dYbzgoXu7KNGUDt-x9OuWCkMlLMNF3AwqxgY5hvMGnO1WYxuh8tkowRpM6_CkYwgLoR06LsYvgOUYrBzqo15yNI5SIO9hiYKKoOd5v58_-8RWkis2uC3e45Rgx2s7aUPdlvPJvQ8gGPQKPCamoB1CbGxCCxGEmQ7OGVZdCwOk-UmiugGHmTjcNUNs6kPxd7x3svax2unTaVJW2eeqjqrVgumKRcI5qpKr4bOszW4FBzGNaVomUtgBTd9NewplBNc"/>
+</div>
+<span class="font-semibold text-slate-900 dark:text-white text-sm">Sketch Pro</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">v99.5</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">2024-02-28</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                                            -5 积分
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white text-xs font-bold px-4 py-2 rounded-lg transition-all shadow-sm">
+<span class="material-symbols-outlined text-sm">download</span>
+                                            再次下载
+                                        </button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<img alt="App Icon" class="h-8 w-8" data-alt="Red office productivity app icon logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-H8Me8c8qnBhmZEes1XO2A-27CCjITv3Mwhj-YK3Xd-X6V9AYHLQlVQiGUaaAcoPH1xOQXU8M6lXUNmc3YWvYLKC9fvVl6FBebH45gwZIMn3Qo50MgKzSE-QzNPzVJdH6-wf8m2Bycxve2MHOSCx_rTSlaAK2GsjrTqlyvlmeQVOEUCA1dz689LQKzR7ekaw57bm2tgfbFd1jk4lpmz9LF9MniwFcE1Dziw91zp7RCqf2BGVIYVlTo618uz5-LfEkcB884HT4YOA"/>
+</div>
+<span class="font-semibold text-slate-900 dark:text-white text-sm">Office 365 离线版</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Build 16.0</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">2024-02-20</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                                            -15 积分
+                                        </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white text-xs font-bold px-4 py-2 rounded-lg transition-all shadow-sm">
+<span class="material-symbols-outlined text-sm">download</span>
+                                            再次下载
+                                        </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between px-6 py-4 bg-slate-50 dark:bg-slate-800/30 border-t border-slate-200 dark:border-slate-800">
+<p class="text-xs text-slate-500">显示 1 到 4 条，共 12 条记录</p>
+<div class="flex gap-1">
+<button class="h-8 w-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 text-slate-400 cursor-not-allowed">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="h-8 w-8 flex items-center justify-center rounded bg-primary text-white text-xs font-bold">1</button>
+<button class="h-8 w-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-100 transition-colors text-xs font-bold">2</button>
+<button class="h-8 w-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-100 transition-colors text-xs font-bold">3</button>
+<button class="h-8 w-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Identical to reference SCREEN_59) -->
+</div>
+</body></html>
