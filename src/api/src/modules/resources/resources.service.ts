@@ -842,16 +842,20 @@ export async function reviewResourceStatus(input: {
   });
 
   if (input.status === "APPROVED" || input.status === "REJECTED") {
-    await createNotification({
-      userId: existing.uploaderId,
-      type: "AUDIT_RESULT",
-      title: input.status === "APPROVED" ? "资源审核通过" : "资源审核被拒绝",
-      content:
-        input.status === "APPROVED"
-          ? `您上传的资源《${resource.title}》已通过审核`
-          : `您上传的资源《${resource.title}》未通过审核`,
-      metadata: { resourceId: resource.id, status: input.status },
-    });
+    try {
+      await createNotification({
+        userId: existing.uploaderId,
+        type: "AUDIT_RESULT",
+        title: input.status === "APPROVED" ? "资源审核通过" : "资源审核被拒绝",
+        content:
+          input.status === "APPROVED"
+            ? `您上传的资源《${resource.title}》已通过审核`
+            : `您上传的资源《${resource.title}》未通过审核`,
+        metadata: { resourceId: resource.id, status: input.status },
+      });
+    } catch (error) {
+      console.error("Failed to create notification:", error);
+    }
   }
 
   return resource;

@@ -100,13 +100,17 @@ export async function updateUser(
   });
 
   if (input.status === "BANNED") {
-    await createNotification({
-      userId: userId,
-      type: "ACCOUNT_BANNED",
-      title: "账号已被禁用",
-      content: "您的账号因违规已被禁用，请联系客服了解详情",
-      metadata: { reason: "违规行为" },
-    });
+    try {
+      await createNotification({
+        userId: user.id,
+        type: "ACCOUNT_BANNED",
+        title: "账号已被禁用",
+        content: "您的账号因违规已被禁用，请联系客服了解详情",
+        metadata: { reason: "违规行为" },
+      });
+    } catch (error) {
+      console.error("Failed to create notification:", error);
+    }
   }
 
   return user;
