@@ -28,7 +28,7 @@ function handleClickOutside(event: MouseEvent) {
 
 function goToNotifications() {
   isOpen.value = false
-  router.push('/notifications')
+  router.push('/user/notifications')
 }
 
 function handleNotificationClick(notification: { id: string }) {
