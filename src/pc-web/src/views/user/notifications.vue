@@ -96,12 +96,17 @@ function formatTime(dateStr: string) {
       <p class="mt-4 text-slate-500">暂无通知</p>
     </div>
 
+    <div v-if="notificationStore.error" class="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400">
+      {{ notificationStore.error }}
+    </div>
+
     <div v-else class="space-y-3">
       <div
         v-for="notification in filteredNotifications"
         :key="notification.id"
-        class="p-4 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-colors"
+        class="p-4 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-colors cursor-pointer"
         :class="{ 'border-l-4 border-l-primary': !notification.isRead }"
+        @click="notificationStore.markRead(notification.id)"
       >
         <div class="flex items-start gap-4">
           <span
