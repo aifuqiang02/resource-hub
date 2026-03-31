@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { useNotificationStore } from '@/stores/notification'
 import { useRouter } from 'vue-router'
+import type { NotificationType } from '@/types/notification'
 
 const notificationStore = useNotificationStore()
 const router = useRouter()
@@ -30,7 +31,12 @@ function goToNotifications() {
   router.push('/notifications')
 }
 
-function getNotificationIcon(type: string) {
+function handleNotificationClick(notification: { id: string }) {
+  notificationStore.markRead(notification.id)
+  goToNotifications()
+}
+
+function getNotificationIcon(type: NotificationType) {
   switch (type) {
     case 'AUDIT_RESULT':
       return 'task_alt'
@@ -63,6 +69,10 @@ watch(isOpen, (open) => {
   } else {
     document.removeEventListener('click', handleClickOutside)
   }
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleClickOutside)
 })
 </script>
 
@@ -104,7 +114,7 @@ watch(isOpen, (open) => {
               v-for="notification in notificationStore.notifications.slice(0, 5)"
               :key="notification.id"
               class="px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 border-b border-slate-100 dark:border-slate-700 last:border-0 cursor-pointer"
-              @click="goToNotifications"
+@click="handleNotificationClick(notification)"
             >
               <div class="flex items-start gap-3">
                 <span
