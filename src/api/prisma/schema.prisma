@@ -1,0 +1,267 @@
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../src/generated/prisma"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String             @id @default(cuid())
+  email           String?            @unique
+  passwordHash    String?            @map("password_hash")
+  openId          String?            @unique @map("open_id")
+  unionId         String?            @map("union_id")
+  nickname        String?
+  avatarUrl       String?            @map("avatar_url")
+  phone           String?            @unique
+  pointsBalance   Int                @default(0) @map("points_balance")
+  role            UserRole           @default(USER)
+  status          UserStatus         @default(ACTIVE)
+  refreshTokens   RefreshToken[]
+  resources       Resource[]
+  comments        Comment[]
+  downloadHistory DownloadHistory[]
+  pointTxs        PointsTransaction[]
+  pointRecharges  PointsRecharge[]
+  createdAt       DateTime          @default(now()) @map("created_at")
+  updatedAt       DateTime          @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model RefreshToken {
+  id        String    @id @default(cuid())
+  userId    String    @map("user_id")
+  token     String    @unique
+  expiresAt DateTime  @map("expires_at")
+  revokedAt DateTime? @map("revoked_at")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("refresh_tokens")
+}
+
+model Resource {
+  id             String              @id @default(cuid())
+  title          String
+  description    String?
+  iconUrl        String?             @map("icon_url")
+  shareLink      String?             @map("share_link")
+  screenshotObjectKey String?        @map("screenshot_object_key")
+  screenshotUrl  String?             @map("screenshot_url")
+  tags           String[]            @default([])
+  contentMd      String?             @map("content_md")
+  pointsCost     Int                 @default(0) @map("points_cost")
+  status         ResourceStatus      @default(PENDING)
+  categoryId     String?             @map("category_id")
+  uploaderId     String              @map("uploader_id")
+  downloadCount  Int                 @default(0) @map("download_count")
+  ratingAvg      Float               @default(0) @map("rating_avg")
+  ratingCount    Int                 @default(0) @map("rating_count")
+  publishedAt    DateTime?          @map("published_at")
+  versions       ResourceVersion[]
+  category       ResourceCategory?   @relation(fields: [categoryId], references: [id])
+  uploader       User                @relation(fields: [uploaderId], references: [id])
+  comments       Comment[]
+  downloadHistory DownloadHistory[]
+  createdAt      DateTime           @default(now()) @map("created_at")
+  updatedAt      DateTime           @updatedAt @map("updated_at")
+
+  @@index([categoryId])
+  @@index([uploaderId])
+  @@index([status])
+  @@map("resources")
+}
+
+model ResourceVersion {
+  id          String          @id @default(cuid())
+  resourceId  String          @map("resource_id")
+  version     String
+  isLatest    Boolean         @default(false) @map("is_latest")
+  files       ResourceFile[]
+  downloads   DownloadHistory[]
+  resource    Resource        @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  createdAt   DateTime       @default(now()) @map("created_at")
+  updatedAt   DateTime       @updatedAt @map("updated_at")
+
+  @@index([resourceId])
+  @@map("resource_versions")
+}
+
+model ResourceFile {
+  id        String   @id @default(cuid())
+  versionId String   @map("version_id")
+  filename  String
+  fileUrl   String   @map("file_url")
+  fileSize  BigInt   @map("file_size")
+  platform  String
+  downloads DownloadHistory[]
+  version   ResourceVersion @relation(fields: [versionId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([versionId])
+  @@map("resource_files")
+}
+
+model ResourceCategory {
+  id         String     @id @default(cuid())
+  name       String
+  slug       String     @unique
+  parentId   String?   @map("parent_id")
+  icon       String?
+  sortOrder  Int       @default(0) @map("sort_order")
+  parent     ResourceCategory? @relation("CategoryParent", fields: [parentId], references: [id])
+  children   ResourceCategory[] @relation("CategoryParent")
+  resources  Resource[]
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @updatedAt @map("updated_at")
+
+  @@index([parentId])
+  @@map("resource_categories")
+}
+
+model PointsTransaction {
+  id            String           @id @default(cuid())
+  userId        String           @map("user_id")
+  type          PointsTxType
+  delta         Int
+  balanceBefore Int              @map("balance_before")
+  balanceAfter  Int              @map("balance_after")
+  referenceType String?          @map("reference_type")
+  referenceId  String?          @map("reference_id")
+  user          User             @relation(fields: [userId], references: [id])
+  createdAt     DateTime        @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@index([referenceType, referenceId])
+  @@map("points_transactions")
+}
+
+model PointsRecharge {
+  id               String           @id @default(cuid())
+  userId           String           @map("user_id")
+  bizId            String           @unique @map("biz_id")
+  amount           Float
+  points           Int
+  paymentMethod    PaymentMethod    @map("payment_method")
+  status           RechargeStatus   @default(PENDING)
+  wechatOrderId    String?          @map("wechat_order_id")
+  paidAt           DateTime?        @map("paid_at")
+  user             User             @relation(fields: [userId], references: [id])
+  createdAt        DateTime         @default(now()) @map("created_at")
+  updatedAt        DateTime         @updatedAt @map("updated_at")
+
+  @@index([userId])
+  @@index([status])
+  @@map("points_recharges")
+}
+
+model DownloadHistory {
+  id          String         @id @default(cuid())
+  userId      String         @map("user_id")
+  resourceId  String         @map("resource_id")
+  versionId   String         @map("version_id")
+  fileId      String?        @map("file_id")
+  pointsSpent Int            @default(0) @map("points_spent")
+  user        User           @relation(fields: [userId], references: [id])
+  resource    Resource       @relation(fields: [resourceId], references: [id])
+  version     ResourceVersion @relation(fields: [versionId], references: [id])
+  file        ResourceFile?  @relation(fields: [fileId], references: [id])
+  downloadedAt DateTime      @default(now()) @map("downloaded_at")
+
+  @@index([userId])
+  @@index([resourceId])
+  @@map("download_histories")
+}
+
+model Comment {
+  id         String   @id @default(cuid())
+  resourceId String   @map("resource_id")
+  userId     String   @map("user_id")
+  rating     Int
+  content    String
+  resource   Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  user       User     @relation(fields: [userId], references: [id])
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@index([resourceId])
+  @@index([userId])
+  @@map("comments")
+}
+
+model PageContent {
+  id         String   @id @default(cuid())
+  pageKey    String   @unique @map("page_key")
+  title      String
+  contentMd  String?  @map("content_md")
+  publishedAt DateTime? @map("published_at")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@map("page_contents")
+}
+
+enum UserRole {
+  USER
+  EDITOR
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  BANNED
+}
+
+enum ResourceStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  OFFLINE
+}
+
+enum PointsTxType {
+  RECHARGE
+  SPEND
+  REFUND
+}
+
+enum PaymentMethod {
+  WECHAT
+  ALIPAY
+}
+
+enum RechargeStatus {
+  PENDING
+  PAID
+  FAILED
+}
+
+enum NotificationType {
+  AUDIT_RESULT
+  ACCOUNT_BANNED
+  ACCOUNT_WARNED
+}
+
+model Notification {
+  id        String           @id @default(uuid())
+  userId    String           @map("user_id")
+  type      NotificationType
+  title     String
+  content   String
+  metadata  Json             @default("{}")
+  isRead    Boolean          @default(false)
+  createdAt DateTime        @default(now()) @map("created_at")
+  readAt    DateTime?       @map("read_at")
+
+  @@index([userId, createdAt])
+  @@index([userId, isRead])
+  @@map("notifications")
+}
