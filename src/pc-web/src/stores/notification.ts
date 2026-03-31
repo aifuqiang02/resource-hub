@@ -9,39 +9,57 @@ export const useNotificationStore = defineStore('notification', () => {
   const notifications = ref<Notification[]>([])
   const unreadCount = ref(0)
   const isLoading = ref(false)
+  const error = ref<string | null>(null)
 
   async function fetchNotifications() {
     isLoading.value = true
+    error.value = null
     try {
       const res = await axios.get(`${BASE_URL}/notifications`)
       notifications.value = res.data.data.list
       unreadCount.value = res.data.data.unreadCount
+    } catch (e) {
+      error.value = e instanceof Error ? e.message : 'Failed to fetch notifications'
     } finally {
       isLoading.value = false
     }
   }
 
   async function markRead(id: string) {
-    await axios.patch(`${BASE_URL}/notifications/${id}/read`)
+    error.value = null
     const notification = notifications.value.find((n) => n.id === id)
-    if (notification) {
-      notification.isRead = true
-      unreadCount.value = Math.max(0, unreadCount.value - 1)
+    if (!notification) return
+    const wasUnread = !notification.isRead
+
+    try {
+      await axios.patch(`${BASE_URL}/notifications/${id}/read`)
+      if (wasUnread) {
+        notification.isRead = true
+        unreadCount.value = Math.max(0, unreadCount.value - 1)
+      }
+    } catch (e) {
+      error.value = e instanceof Error ? e.message : 'Failed to mark notification as read'
     }
   }
 
   async function markAllRead() {
-    await axios.patch(`${BASE_URL}/notifications/read`)
-    notifications.value.forEach((n) => {
-      n.isRead = true
-    })
-    unreadCount.value = 0
+    error.value = null
+    try {
+      await axios.patch(`${BASE_URL}/notifications/read`)
+      notifications.value.forEach((n) => {
+        n.isRead = true
+      })
+      unreadCount.value = 0
+    } catch (e) {
+      error.value = e instanceof Error ? e.message : 'Failed to mark all as read'
+    }
   }
 
   return {
     notifications,
     unreadCount,
     isLoading,
+    error,
     fetchNotifications,
     markRead,
     markAllRead,
