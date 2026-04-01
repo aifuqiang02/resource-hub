@@ -131,6 +131,11 @@ function resourceSelect() {
         slug: true,
       },
     },
+    uploader: {
+      select: {
+        id: true,
+      },
+    },
   } as const;
 }
 
@@ -249,11 +254,11 @@ export async function listMyResources(input: {
 export async function updateResource(input: {
   resourceId: string;
   uploaderId: string;
-  title: string;
-  category: string;
-  shareLink: string;
-  contentMd: string;
-  tags: string[];
+  title?: string;
+  category?: string;
+  shareLink?: string;
+  contentMd?: string;
+  tags?: string[];
 }) {
   const existing = await prisma.resource.findFirst({
     where: {
@@ -269,19 +274,31 @@ export async function updateResource(input: {
     throw new AppError("Resource not found", 404);
   }
 
-  const category = await ensureCategory(input.category.trim());
+  const data: Record<string, unknown> = {
+    status: "PENDING",
+  };
+
+  if (input.title !== undefined) {
+    data.title = input.title.trim();
+  }
+  if (input.shareLink !== undefined) {
+    data.shareLink = input.shareLink.trim();
+  }
+  if (input.contentMd !== undefined) {
+    data.contentMd = input.contentMd.trim();
+    data.description = buildDescription(input.contentMd);
+  }
+  if (input.tags !== undefined) {
+    data.tags = input.tags;
+  }
+  if (input.category !== undefined) {
+    const category = await ensureCategory(input.category.trim());
+    data.categoryId = category.id;
+  }
 
   return prisma.resource.update({
     where: { id: input.resourceId },
-    data: {
-      title: input.title.trim(),
-      description: buildDescription(input.contentMd),
-      shareLink: input.shareLink.trim(),
-      contentMd: input.contentMd.trim(),
-      tags: input.tags,
-      categoryId: category.id,
-      status: "PENDING",
-    },
+    data,
     select: resourceSelect(),
   });
 }
@@ -297,11 +314,16 @@ export async function deleteResource(input: {
     },
     select: {
       id: true,
+      status: true,
     },
   });
 
   if (!existing) {
     throw new AppError("Resource not found", 404);
+  }
+
+  if (existing.status === "APPROVED") {
+    throw new AppError("已发布的资源不可删除", 403);
   }
 
   await prisma.$transaction([
@@ -413,11 +435,16 @@ export async function listPublicResources(input: {
   };
 }
 
-export async function getPublicResourceDetail(resourceId: string, userId?: string) {
+export async function getPublicResourceDetail(
+  resourceId: string,
+  userId?: string,
+  role?: "USER" | "EDITOR" | "ADMIN",
+) {
+  const canPreviewUnapproved = role === "EDITOR" || role === "ADMIN";
   const resource = await prisma.resource.findFirst({
     where: {
       id: resourceId,
-      status: "APPROVED",
+      ...(canPreviewUnapproved ? {} : { status: "APPROVED" }),
     },
     select: resourceSelect(),
   });
@@ -599,6 +626,44 @@ export async function createResourceComment(input: {
   };
 }
 
+export async function deleteResourceComment(input: {
+  resourceId: string;
+  commentId: string;
+  userId: string;
+}) {
+  const comment = await prisma.comment.findUnique({
+    where: { id: input.commentId },
+  });
+
+  if (!comment) {
+    throw new AppError("评论不存在", 404);
+  }
+
+  if (comment.userId !== input.userId) {
+    throw new AppError("无权删除此评论", 403);
+  }
+
+  await prisma.comment.delete({
+    where: { id: input.commentId },
+  });
+
+  const aggregate = await prisma.comment.aggregate({
+    where: { resourceId: input.resourceId },
+    _avg: { rating: true },
+    _count: { id: true },
+  });
+
+  await prisma.resource.update({
+    where: { id: input.resourceId },
+    data: {
+      ratingAvg: aggregate._avg.rating ?? 0,
+      ratingCount: aggregate._count.id,
+    },
+  });
+
+  return { success: true };
+}
+
 export async function acquireResource(input: {
   resourceId: string;
   userId: string;
@@ -637,7 +702,8 @@ export async function acquireResource(input: {
       throw new AppError("用户不存在", 404);
     }
 
-    const pointsSpent = existingHistory ? 0 : resource.pointsCost;
+    const isUploader = resource.uploader?.id === input.userId;
+    const pointsSpent = existingHistory || isUploader ? 0 : resource.pointsCost;
 
     if (pointsSpent > 0 && user.pointsBalance < pointsSpent) {
       throw new AppError("积分不足，请先充值", 400);
@@ -693,6 +759,7 @@ export async function acquireResource(input: {
       pointsSpent,
       currentPointsBalance: balanceAfter,
       alreadyOwned: Boolean(existingHistory),
+      isUploader,
     };
   });
 }
