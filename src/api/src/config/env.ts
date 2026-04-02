@@ -1,7 +1,19 @@
+import fs from "fs";
+import path from "path";
+
 import dotenv from "dotenv";
 import { z } from "zod";
 
-dotenv.config();
+const nodeEnv = process.env.NODE_ENV ?? "development";
+const envFiles = [`.env.${nodeEnv}.local`, `.env.${nodeEnv}`, ".env.local", ".env"];
+
+for (const fileName of envFiles) {
+  const filePath = path.resolve(process.cwd(), fileName);
+
+  if (fs.existsSync(filePath)) {
+    dotenv.config({ path: filePath });
+  }
+}
 
 const envSchema = z.object({
   NODE_ENV: z
@@ -18,7 +30,10 @@ const envSchema = z.object({
   JWT_REFRESH_SECRET: z.string().min(16),
   JWT_ACCESS_EXPIRES_IN: z.string().default("15m"),
   JWT_REFRESH_EXPIRES_IN: z.string().default("7d"),
-  PAYMENT_NOTIFY_URL: z.string().min(1).default("http://localhost:3000"),
+  PAYMENT_NOTIFY_URL: z.string().min(1),
+  OPENAPI_SERVER_URL: z.string().url(),
+  OPEN_PLATFORM_BASE_URL: z.string().url(),
+  OPEN_PLATFORM_APP_ID: z.string().min(1),
   BITIFUL_S4_ENDPOINT: z.string().url().optional(),
   BITIFUL_S4_REGION: z.string().min(1).optional(),
   BITIFUL_S4_BUCKET: z.string().min(1).optional(),

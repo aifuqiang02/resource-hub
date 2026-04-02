@@ -7,5 +7,8 @@ describe('appEnv', () => {
     expect(appEnv.apiBaseUrl.length).toBeGreaterThan(0)
     expect(appEnv.requestTimeout).toBeGreaterThan(0)
     expect(typeof appEnv.enableMock).toBe('boolean')
+    expect(appEnv.openPlatformBaseUrl.startsWith('http')).toBe(true)
+    expect(appEnv.openPlatformAppId.length).toBeGreaterThan(0)
+    expect(appEnv.qrCodeServiceBaseUrl.startsWith('http')).toBe(true)
   })
 })

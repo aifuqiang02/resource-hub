@@ -1,3 +1,5 @@
+import { env } from "../config/env";
+
 export const openApiDocument = {
   openapi: "3.0.3",
   info: {
@@ -8,7 +10,7 @@ export const openApiDocument = {
   },
   servers: [
     {
-      url: "http://localhost:3000",
+      url: env.OPENAPI_SERVER_URL,
       description: "Local development",
     },
   ],

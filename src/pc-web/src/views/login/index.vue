@@ -2,6 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import axios from 'axios'
+import { appEnv } from '@/config/env'
 import { useAuthStore } from '@/stores/auth'
 import { weChatLogin } from '@/services/modules/auth'
 
@@ -13,7 +14,7 @@ const router = useRouter()
 const authStore = useAuthStore()
 const agreementChecked = ref(true)
 
-const WECHAT_API_BASE = 'https://open.tx07.cn/api/v1/apps/app_mnbsinbe43e228ed2f830a0cd906/wechat-login'
+const wechatApiBase = `${appEnv.openPlatformBaseUrl}/api/v1/apps/${appEnv.openPlatformAppId}/wechat-login`
 
 const loginState = ref<'idle' | 'loading' | 'scanning' | 'success' | 'expired' | 'error'>('idle')
 const qrCodeUrl = ref('')
@@ -26,7 +27,7 @@ const generateBizId = () => {
 }
 
 const generateQRCodeUrl = (data: string) => {
-  return `https://api.qrserver.com/v1/create-qr-code/?size=256x256&margin=8&data=${encodeURIComponent(data)}`
+  return `${appEnv.qrCodeServiceBaseUrl}?size=256x256&margin=8&data=${encodeURIComponent(data)}`
 }
 
 const startLogin = async () => {
@@ -35,7 +36,7 @@ const startLogin = async () => {
   bizId.value = generateBizId()
 
   try {
-    const res = await axios.post(`${WECHAT_API_BASE}/sessions`, {
+    const res = await axios.post(`${wechatApiBase}/sessions`, {
       bizId: bizId.value,
     })
 
@@ -57,7 +58,7 @@ const startPolling = () => {
 
   pollTimer = setInterval(async () => {
     try {
-      const res = await axios.get(`${WECHAT_API_BASE}/sessions/by-biz/${bizId.value}`)
+      const res = await axios.get(`${wechatApiBase}/sessions/by-biz/${bizId.value}`)
 
       if (res.data.code === 200) {
         const status = res.data.data.status

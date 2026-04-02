@@ -11,6 +11,12 @@
 - **核心功能**：资源导航、智能推荐、资源评价、123 云盘资源分发
 - **部署状态**：开发中
 
+## 当前结论
+
+- 已按 monorepo 方式集中维护前端、后端、设计稿、规格、文档和消息记录
+- 根目录已补 `pnpm-workspace.yaml` 与根 `package.json`，项目级入口统一到 `resource-hub/`
+- 配置统一收口到各端环境变量文件中，并按开发、测试、生产环境区分
+
 ## 技术栈
 
 | 端 | 技术 | 说明 |
@@ -31,9 +37,14 @@
 
 ```
 resource-hub/
+├── package.json          # 项目根脚本入口
+├── pnpm-workspace.yaml   # pnpm workspace 配置
 ├── src/
 │   ├── api/              # Express + Prisma 后端
 │   │   ├── prisma/      # 数据库 schema 和迁移
+│   │   ├── .env.example
+│   │   ├── .env.development.example
+│   │   ├── .env.production.example
 │   │   ├── src/
 │   │   │   ├── config/  # 环境变量、日志配置
 │   │   │   ├── lib/     # Prisma 客户端、工具
@@ -41,6 +52,10 @@ resource-hub/
 │   │   │   └── routes/  # 路由
 │   │   └── tests/       # 测试
 │   └── pc-web/          # Vue 3 前端
+│       ├── .env.example
+│       ├── .env.development
+│       ├── .env.production
+│       ├── .env.test
 │       ├── src/
 │       │   ├── views/   # 页面组件
 │       │   ├── components/  # 通用组件
@@ -55,6 +70,14 @@ resource-hub/
 ```
 
 ## 快速开始
+
+### 项目根目录
+
+```bash
+pnpm install
+pnpm dev:api
+pnpm dev:pc-web
+```
 
 ### 后端
 
@@ -71,6 +94,46 @@ cd src/pc-web
 pnpm install
 pnpm dev
 ```
+
+## 配置管理
+
+### 后端环境变量
+
+- 开发环境优先读取 `src/api/.env.development`，其次回退到 `src/api/.env`
+- 生产环境优先读取 `src/api/.env.production`，其次回退到 `src/api/.env`
+- 示例文件：`src/api/.env.example`、`src/api/.env.development.example`、`src/api/.env.production.example`
+
+关键配置：
+
+- `PORT`
+- `DATABASE_URL`
+- `JWT_ACCESS_SECRET`
+- `JWT_REFRESH_SECRET`
+- `PAYMENT_NOTIFY_URL`
+- `OPENAPI_SERVER_URL`
+- `OPEN_PLATFORM_BASE_URL`
+- `OPEN_PLATFORM_APP_ID`
+
+### 前端环境变量
+
+- 开发环境：`src/pc-web/.env.development`
+- 测试环境：`src/pc-web/.env.test`
+- 生产环境：`src/pc-web/.env.production`
+- 示例文件：`src/pc-web/.env.example`
+
+关键配置：
+
+- `VITE_APP_TITLE`
+- `VITE_API_BASE_URL`
+- `VITE_REQUEST_TIMEOUT`
+- `VITE_ENABLE_MOCK`
+- `VITE_OPEN_PLATFORM_BASE_URL`
+- `VITE_OPEN_PLATFORM_APP_ID`
+- `VITE_QR_CODE_SERVICE_BASE_URL`
+- `VITE_DEV_SERVER_PORT`
+- `VITE_DEV_PROXY_TARGET`
+
+说明：微信登录、支付平台轮询、二维码服务地址以及 Vite 开发代理目标都已改为从环境变量读取，不再直接写死在代码里。
 
 ## 设计稿
 

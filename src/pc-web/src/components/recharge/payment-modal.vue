@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, watch, onUnmounted } from 'vue'
+import { appEnv } from '@/config/env'
 import { rechargeService } from '@/services/modules/recharge'
 
 const props = defineProps<{
@@ -157,7 +158,7 @@ onUnmounted(() => {
             <div class="bg-white p-4 rounded-xl border border-slate-200 dark:border-slate-700">
               <img
                 v-if="qrCodeUrl"
-                :src="`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrCodeUrl)}`"
+                :src="`${appEnv.qrCodeServiceBaseUrl}?size=200x200&data=${encodeURIComponent(qrCodeUrl)}`"
                 alt="支付二维码"
                 class="w-48 h-48"
               />

@@ -21,6 +21,8 @@ const AMOUNT_MAP: Record<string, number> = {
   cmnchx64m00c95cdw7zvdu3ao: 20,
 }
 
+const openPlatformAppBaseUrl = `${env.OPEN_PLATFORM_BASE_URL.replace(/\/$/, '')}/api/v1/apps/${env.OPEN_PLATFORM_APP_ID}`
+
 const createSessionSchema = z.object({
   points: z.number().int().positive(),
 })
@@ -60,7 +62,7 @@ export async function createPaymentSession(
     })
 
     const response = await axios.post(
-      `https://open.tx07.cn/api/v1/apps/app_mnbsinbe43e228ed2f830a0cd906/payment/sessions`,
+      `${openPlatformAppBaseUrl}/payment/sessions`,
       {
         paymentProductId,
         bizId: recharge.bizId,
@@ -86,7 +88,7 @@ export async function createPaymentSession(
     return {
       bizId: recharge.bizId,
       qrCodeUrl: response.data.data.qrCodeUrl,
-      pollUrl: `https://open.tx07.cn/api/v1/apps/app_mnbsinbe43e228ed2f830a0cd906/payment/sessions/by-biz/${recharge.bizId}`,
+      pollUrl: `${openPlatformAppBaseUrl}/payment/sessions/by-biz/${recharge.bizId}`,
     }
   } catch (error) {
     console.error('Payment session error:', error)
@@ -116,7 +118,7 @@ export async function pollPaymentStatus(bizId: string): Promise<PaymentSession> 
     data: PaymentSession
     msg?: string
   }>(
-    `https://open.tx07.cn/api/v1/apps/app_mnbsinbe43e228ed2f830a0cd906/payment/sessions/by-biz/${bizId}`,
+    `${openPlatformAppBaseUrl}/payment/sessions/by-biz/${bizId}`,
   )
 
   if (response.data.code !== 200) {
