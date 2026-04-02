@@ -124,6 +124,7 @@ pnpm dev
 关键配置：
 
 - `VITE_APP_TITLE`
+- `VITE_APP_BASE_PATH`
 - `VITE_API_BASE_URL`
 - `VITE_REQUEST_TIMEOUT`
 - `VITE_ENABLE_MOCK`
@@ -133,7 +134,7 @@ pnpm dev
 - `VITE_DEV_SERVER_PORT`
 - `VITE_DEV_PROXY_TARGET`
 
-说明：微信登录、支付平台轮询、二维码服务地址以及 Vite 开发代理目标都已改为从环境变量读取，不再直接写死在代码里。
+说明：微信登录、支付平台轮询、二维码服务地址、Vite 开发代理目标，以及前端部署子路径都已改为从环境变量读取，不再直接写死在代码里。
 
 ## 设计稿
 
@@ -150,4 +151,5 @@ pnpm dev
 ## 项目文档
 
 - [部署指南](./docs/deployment.md)
+- [部署脚本说明](./deploy/README.md)
 - [资源发布方案（123 云盘链接登记制）](./specs/resource-publish-via-123pan.md)

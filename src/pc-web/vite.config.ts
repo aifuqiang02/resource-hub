@@ -16,6 +16,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
 
   return {
+    base: requireEnv(env.VITE_APP_BASE_PATH, 'VITE_APP_BASE_PATH'),
     plugins: [
       vue(),
       Inspector(),

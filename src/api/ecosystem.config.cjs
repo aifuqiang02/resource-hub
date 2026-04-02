@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "express-prisma-starter",
+      name: "resource-hub-api",
       script: "dist/src/server.js",
       cwd: __dirname,
       instances: 1,

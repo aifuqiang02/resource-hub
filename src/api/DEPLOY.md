@@ -1,83 +1,61 @@
-# Production Deployment
+# Backend 部署说明
 
-适用方案：
+本文档只说明 `resource-hub` 后端在当前服务器上的迭代部署方式。
+
+## 服务器目标
+
+- 部署目录：`/www/wwwroot/resource-hub/backend`
+- PM2 应用名：`resource-hub-api`
+- 环境变量文件：服务器目录中的 `.env.production`
+
+## 部署入口
+
+在项目根目录执行：
+
+```powershell
+pnpm run deploy:server -- --target backend
+```
+
+## 后端部署流程
+
+1. 本地执行 `src/api` 下的 `pnpm build`
+2. 打包 `dist`、`prisma`、`package.json`、`pnpm-lock.yaml`、`ecosystem.config.cjs`
+3. 上传到服务器临时目录 `/www/wwwroot/.resource-hub-deploy/.deploy`
+4. 替换正式目录 `/www/wwwroot/resource-hub/backend`，保留 `.env`、`.env.production` 和 `logs`
+5. 在服务器执行：
+   - `pnpm install --frozen-lockfile --ignore-scripts`
+   - `pnpm exec prisma generate`
+   - `mkdir -p dist/src/generated/prisma`
+   - `cp -f src/generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node dist/src/generated/prisma/`
+   - `pnpm exec prisma migrate deploy`
+   - `npx --yes pm2 delete resource-hub-api || true`
+   - `npx --yes pm2 start ecosystem.config.cjs --update-env`
+
+## 服务器准备要求
 
 - Node.js 20+
 - pnpm
 - PM2
-- Nginx
 - PostgreSQL
 
-## 部署步骤
+## 生产环境变量
 
-1. 安装基础环境
-
-- Node.js 20
-- pnpm
-- PM2
-- Nginx
-- PostgreSQL
-
-2. 上传项目
-
-- 将项目上传到服务器目录，例如 `/var/www/express-prisma-starter`
-
-3. 安装依赖
-
-```bash
-pnpm install --frozen-lockfile
-```
-
-4. 配置生产环境变量
-
-```bash
-cp .env.example .env
-```
-
-至少修改以下配置：
+服务器上的 `.env.production` 至少要包含：
 
 - `NODE_ENV=production`
-- `PORT=3000`
-- `DATABASE_URL=...`
+- `PORT=40251`
+- `DATABASE_URL=postgresql://<user>:<password>@127.0.0.1:5432/resource-hub?schema=public`
 - `JWT_ACCESS_SECRET=...`
 - `JWT_REFRESH_SECRET=...`
+- `PAYMENT_NOTIFY_URL=https://resource-hub.nps1.tx07.cn`
+- `OPENAPI_SERVER_URL=https://resource-hub.nps1.tx07.cn`
+- `OPEN_PLATFORM_BASE_URL=https://open.tx07.cn`
+- `OPEN_PLATFORM_APP_ID=...`
 
-5. 构建项目
+## 注意事项
 
-```bash
-pnpm build
-```
-
-6. 执行生产迁移
-
-```bash
-pnpm db:migrate:deploy
-```
-
-7. 使用 PM2 启动服务
-
-```bash
-pm2 start ecosystem.config.cjs
-pm2 save
-pm2 startup
-```
-
-8. 配置 Nginx
-
-- 将请求反向代理到 `http://127.0.0.1:3000`
-- 可参考 [nginx.conf.example](/D:/git-projects/express-prisma-starter/deploy/nginx.conf.example)
-
-## 生产注意事项
-
-- 生产环境只使用 `pnpm db:migrate:deploy`
-- 不要在生产环境执行 `pnpm db:migrate`
-- Node 服务建议只监听本机，由 Nginx 对外暴露
-- Swagger 默认不要对公网开放
-- JWT 密钥必须使用高强度随机字符串
-- PostgreSQL 需要做定期备份
-
-## 项目内相关文件
-
-- PM2 配置：[ecosystem.config.cjs](/D:/git-projects/express-prisma-starter/ecosystem.config.cjs)
-- Nginx 示例：[nginx.conf.example](/D:/git-projects/express-prisma-starter/deploy/nginx.conf.example)
-- 环境变量示例：[.env.example](/D:/git-projects/express-prisma-starter/.env.example)
+- 正式环境只使用 `pnpm exec prisma migrate deploy`
+- 不要在正式环境执行 `pnpm db:migrate`
+- 不要混用手工启动进程和 PM2
+- 如果改了关键环境变量，优先执行 `pm2 delete + pm2 start`，不要只做 `restart`
+- 后端目录中的 `.env`、`.env.production` 和 `logs` 会在部署时保留

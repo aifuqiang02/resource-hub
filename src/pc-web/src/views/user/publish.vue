@@ -14,6 +14,7 @@ defineOptions({
 const authStore = useAuthStore()
 
 const PUBLISH_DRAFT_KEY = 'resource-hub.publish.draft'
+const publicBasePath = import.meta.env.BASE_URL
 
 const form = reactive({
   title: '',
@@ -189,8 +190,8 @@ const downloadSkill = async () => {
     }
 
     const [skillMdRes, scriptRes] = await Promise.all([
-      fetch('/skills/resource-hub-upload/SKILL.md'),
-      fetch('/skills/resource-hub-upload/scripts/resource-upload.js'),
+      fetch(`${publicBasePath}skills/resource-hub-upload/SKILL.md`),
+      fetch(`${publicBasePath}skills/resource-hub-upload/scripts/resource-upload.js`),
     ])
 
     if (!skillMdRes.ok || !scriptRes.ok) {

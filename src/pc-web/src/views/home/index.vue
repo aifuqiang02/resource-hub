@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from "vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
 import { HttpError } from "@/services/http/create-http-client";
 import { acquireResource } from "@/services/modules/downloads";
 import { useAuthStore } from "@/stores/auth";
@@ -12,6 +12,7 @@ defineOptions({
 });
 
 const authStore = useAuthStore();
+const router = useRouter();
 const searchQuery = ref("");
 const activeCategory = ref("");
 const sortBy = ref<"latest" | "popular">("latest");
@@ -41,6 +42,13 @@ const onSearchBlur = () => {
   if (searchQuery.value.trim()) {
     recordSearch(searchQuery.value.trim()).catch(() => {});
   }
+};
+
+const getResourceDetailHref = (resourceId: string) => {
+  return router.resolve({
+    name: "software-detail",
+    params: { id: resourceId },
+  }).href;
 };
 
 
@@ -255,7 +263,7 @@ const handleCardAction = async (resource: ResourceListItem) => {
         <a
           v-for="resource in resources"
           :key="resource.id"
-          :href="`/software/${resource.id}`"
+          :href="getResourceDetailHref(resource.id)"
           target="_blank"
           class="block px-6 py-5 hover:bg-slate-50 dark:hover:bg-slate-800/30 rounded-lg transition-colors"
         >
