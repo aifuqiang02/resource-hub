@@ -1,9 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import axios from 'axios'
+import { httpClient } from '@/services/http/client'
 import type { Notification } from '@/types/notification'
-
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api/v1'
 
 export const useNotificationStore = defineStore('notification', () => {
   const notifications = ref<Notification[]>([])
@@ -15,9 +13,9 @@ export const useNotificationStore = defineStore('notification', () => {
     isLoading.value = true
     error.value = null
     try {
-      const res = await axios.get(`${BASE_URL}/notifications`)
-      notifications.value = res.data.data.list
-      unreadCount.value = res.data.data.unreadCount
+      const res = await httpClient.get<{ code: number; data: { list: Notification[]; unreadCount: number }; msg: string }>('/notifications')
+      notifications.value = res.data.list
+      unreadCount.value = res.data.unreadCount
     } catch (e) {
       error.value = e instanceof Error ? e.message : 'Failed to fetch notifications'
     } finally {
@@ -32,7 +30,7 @@ export const useNotificationStore = defineStore('notification', () => {
     const wasUnread = !notification.isRead
 
     try {
-      await axios.patch(`${BASE_URL}/notifications/${id}/read`)
+      await httpClient.patch(`/notifications/${id}/read`)
       if (wasUnread) {
         notification.isRead = true
         unreadCount.value = Math.max(0, unreadCount.value - 1)
@@ -45,7 +43,7 @@ export const useNotificationStore = defineStore('notification', () => {
   async function markAllRead() {
     error.value = null
     try {
-      await axios.patch(`${BASE_URL}/notifications/read`)
+      await httpClient.patch('/notifications/read')
       notifications.value.forEach((n) => {
         n.isRead = true
       })

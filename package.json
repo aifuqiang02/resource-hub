@@ -1,0 +1,13 @@
+{
+  "name": "resource-hub",
+  "private": true,
+  "packageManager": "pnpm@10.8.0",
+  "scripts": {
+    "dev:api": "pnpm --filter @resource-hub/api dev",
+    "dev:pc-web": "pnpm --filter @resource-hub/pc-web dev",
+    "build": "pnpm -r --if-present build",
+    "lint": "pnpm -r --if-present lint",
+    "test": "pnpm -r --if-present test:run && pnpm --filter @resource-hub/api test",
+    "type-check": "pnpm -r --if-present type-check"
+  }
+}

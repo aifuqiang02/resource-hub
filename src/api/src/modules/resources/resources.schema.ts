@@ -65,6 +65,14 @@ export const updateResourceSchema = z.object({
   query: z.object({}),
 });
 
+export const aiOnlineFillSchema = z.object({
+  body: z.object({
+    keyInfo: z.string().trim().min(1).max(8000),
+  }),
+  params: z.object({}),
+  query: z.object({}),
+});
+
 export const listPublicResourcesSchema = z.object({
   body: z.object({}),
   params: z.object({}),
@@ -146,3 +154,5 @@ export const reviewResourceStatusSchema = z.object({
   }),
   query: z.object({}),
 });
+
+export type AiOnlineFillInput = z.infer<typeof aiOnlineFillSchema>;

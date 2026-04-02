@@ -1,0 +1,77 @@
+{
+  "name": "@resource-hub/pc-web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "vite preview",
+    "build-only": "vite build",
+    "clone:templates": "node ./scripts/clone-templates.mjs",
+    "prepare": "husky",
+    "type-check": "vue-tsc --build",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "lint": "run-s lint:*",
+    "lint:oxlint": "oxlint . --fix",
+    "lint:eslint": "eslint . --fix --cache",
+    "format": "oxfmt .",
+    "commitlint": "commitlint --edit"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "@material-symbols/font-400": "^0.43.0",
+    "axios": "^1.11.0",
+    "element-plus": "^2.11.1",
+    "jszip": "^3.10.1",
+    "marked": "^17.0.5",
+    "pinia": "^3.0.4",
+    "vue": "^3.5.30",
+    "vue-router": "^5.0.3"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@tsconfig/node24": "^24.0.4",
+    "@types/node": "^24.11.0",
+    "@vitejs/plugin-vue": "^6.0.4",
+    "@vitest/coverage-v8": "^4.1.0",
+    "@vue/eslint-config-typescript": "^14.7.0",
+    "@vue/test-utils": "^2.4.6",
+    "@vue/tsconfig": "^0.8.1",
+    "autoprefixer": "^10.4.21",
+    "axios-mock-adapter": "^2.1.0",
+    "eslint": "^10.0.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-oxlint": "~1.50.0",
+    "eslint-plugin-vue": "~10.8.0",
+    "husky": "^9.1.7",
+    "jiti": "^2.6.1",
+    "jsdom": "^26.1.0",
+    "lint-staged": "^16.2.0",
+    "npm-run-all2": "^8.0.4",
+    "oxfmt": "^0.35.0",
+    "oxlint": "~1.50.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "typescript": "~5.9.3",
+    "vite": "^8.0.0",
+    "vite-plugin-vue-inspector-ai": "^1.0.31",
+    "vitest": "^4.1.0",
+    "vue-tsc": "^3.2.5"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,vue}": [
+      "pnpm lint:oxlint",
+      "pnpm lint:eslint"
+    ],
+    "*.{css,md,json,yml,yaml}": [
+      "pnpm format"
+    ]
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  }
+}

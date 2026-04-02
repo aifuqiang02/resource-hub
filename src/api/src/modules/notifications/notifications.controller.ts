@@ -15,7 +15,12 @@ import {
 
 export async function getNotifications(req: Request, res: Response) {
   const userId = req.auth!.userId;
-  const { page, pageSize } = listNotificationsSchema.parse(req.query);
+  const { query } = listNotificationsSchema.parse({
+    body: req.body,
+    params: req.params,
+    query: req.query,
+  });
+  const { page, pageSize } = query;
 
   const result = await listNotifications(userId, page, pageSize);
   return sendSuccess(res, { data: result });
@@ -23,7 +28,12 @@ export async function getNotifications(req: Request, res: Response) {
 
 export async function markRead(req: Request, res: Response) {
   const userId = req.auth!.userId;
-  const { id } = notificationIdParamSchema.parse(req.params);
+  const { params } = notificationIdParamSchema.parse({
+    body: req.body,
+    params: req.params,
+    query: req.query,
+  });
+  const { id } = params;
 
   const notification = await markNotificationRead(userId, id);
   if (!notification) {

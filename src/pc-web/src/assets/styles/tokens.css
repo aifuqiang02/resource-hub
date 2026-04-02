@@ -1,0 +1,29 @@
+:root {
+  color-scheme: light;
+  --app-bg: #f4efe7;
+  --app-surface: rgba(255, 252, 246, 0.86);
+  --app-surface-strong: #fffdf8;
+  --app-text: #1d2a31;
+  --app-text-muted: #5f6f78;
+  --app-primary: #1f7a6a;
+  --app-primary-soft: rgba(31, 122, 106, 0.12);
+  --app-border: rgba(29, 42, 49, 0.12);
+  --app-shadow: 0 18px 45px rgba(56, 70, 77, 0.12);
+  --app-radius-lg: 24px;
+  --app-radius-md: 16px;
+  --app-radius-sm: 12px;
+  --app-container: 1120px;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --app-bg: #142026;
+  --app-surface: rgba(18, 31, 38, 0.88);
+  --app-surface-strong: #18272f;
+  --app-text: #f3f2ec;
+  --app-text-muted: #b6c4cb;
+  --app-primary: #78d9c2;
+  --app-primary-soft: rgba(120, 217, 194, 0.12);
+  --app-border: rgba(255, 255, 255, 0.08);
+  --app-shadow: 0 18px 45px rgba(0, 0, 0, 0.24);
+}

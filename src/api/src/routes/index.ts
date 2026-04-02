@@ -6,8 +6,10 @@ import { openApiDocument } from "../docs/openapi";
 import { sendSuccess } from "../lib/http-response";
 import { authRouter } from "../modules/auth/auth.route";
 import { notificationsRouter } from "../modules/notifications/notifications.route";
+import { openRouter } from "../modules/open/open.route";
 import { rechargeRouter } from "../modules/recharge/recharge.route";
 import { resourcesRouter } from "../modules/resources/resources.route";
+import { searchRouter } from "../modules/search/search.route";
 import { uploadsRouter } from "../modules/uploads/uploads.route";
 import { usersRouter } from "../modules/users/users.route";
 
@@ -30,7 +32,9 @@ apiRouter.get("/openapi.json", (_req, res) =>
 
 apiRouter.use("/auth", authRouter);
 apiRouter.use("/notifications", notificationsRouter);
+apiRouter.use("/open", openRouter);
 apiRouter.use("/recharge", rechargeRouter);
 apiRouter.use("/resources", resourcesRouter);
+apiRouter.use("/search", searchRouter);
 apiRouter.use("/uploads", uploadsRouter);
 apiRouter.use("/users", usersRouter);

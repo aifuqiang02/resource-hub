@@ -11,6 +11,55 @@ function buildDescription(contentMd: string) {
   return normalized.slice(0, 140) || null;
 }
 
+function normalizeLine(line: string) {
+  return line.replace(/^[\s>*-]+/, "").trim();
+}
+
+function extractLabeledValue(lines: string[], label: RegExp) {
+  for (const line of lines) {
+    const match = line.match(label);
+    if (match?.[1]) {
+      return match[1].trim();
+    }
+  }
+  return "";
+}
+
+function buildTagsFromText(text: string) {
+  const tags: string[] = [];
+  const push = (tag: string) => {
+    if (tag && !tags.includes(tag)) {
+      tags.push(tag);
+    }
+  };
+
+  if (/vscode|vs code/i.test(text)) push("VS Code");
+  if (/插件/.test(text)) push("插件");
+  if (/模板/.test(text)) push("模板");
+  if (/教程|指南/.test(text)) push("教程");
+  if (/提示词|prompt/i.test(text)) push("提示词");
+  if (/主题/.test(text)) push("主题");
+  if (/图标/.test(text)) push("图标");
+  if (/脚本/.test(text)) push("脚本");
+  if (/配置/.test(text)) push("配置");
+
+  return tags.slice(0, 8);
+}
+
+function guessCategory(text: string) {
+  if (/插件|扩展/.test(text)) {
+    return "辅助插件";
+  }
+  if (/优化|清理|加速|修复/.test(text)) {
+    return "系统优化";
+  }
+  return "开发工具";
+}
+
+function buildAiPrompt(keyInfo: string) {
+  return `你是资源发布助手。请根据用户提供的关键信息，输出严格 JSON：\n{\n  "title": "资源标题",\n  "category": "开发工具",\n  "tags": ["标签1", "标签2"],\n  "contentMd": "Markdown 详细说明"\n}\n\n用户关键信息：\n${keyInfo}`;
+}
+
 type CreateResourceInput = {
   title: string;
   category: string;
@@ -197,6 +246,45 @@ export async function createResource(input: CreateResourceInput) {
     },
     select: resourceSelect(),
   });
+}
+
+export async function aiOnlineFill(input: { keyInfo: string; userId?: string }) {
+  // TODO: integrate external AI provider here.
+  void input.userId;
+  const raw = input.keyInfo.trim();
+  const prompt = buildAiPrompt(raw);
+  void prompt;
+  const rawLines = raw.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+  const lines = rawLines.map((line) => normalizeLine(line));
+
+  const title =
+    extractLabeledValue(lines, /^(?:资源名称|资源名|标题|名称|title)\s*[:：]\s*(.+)$/i) ||
+    lines[0] ||
+    "待补充标题";
+
+  const category =
+    extractLabeledValue(lines, /^(?:分类|类别|category)\s*[:：]\s*(.+)$/i) ||
+    guessCategory(raw);
+
+  const tagsRaw =
+    extractLabeledValue(lines, /^(?:标签|tags?)\s*[:：]\s*(.+)$/i) || "";
+  const tagsFromInput = tagsRaw
+    .split(/[,\n/|，;；]/)
+    .map((tag) => tag.trim())
+    .filter(Boolean);
+
+  const tags = tagsFromInput.length > 0 ? tagsFromInput : buildTagsFromText(raw);
+
+  const contentMd = rawLines.length
+    ? rawLines.map((line) => `- ${normalizeLine(line)}`).join("\n")
+    : `- ${raw}`;
+
+  return {
+    title: title.slice(0, 120),
+    category: category.slice(0, 50),
+    tags: tags.slice(0, 20),
+    contentMd: contentMd.slice(0, 20_000),
+  };
 }
 
 export async function listMyResources(input: {
