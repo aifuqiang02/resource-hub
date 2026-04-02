@@ -101,6 +101,23 @@ AI 提取后应返回严格 JSON：
 
 > 注意：脚本已内置 userKey（下载时已自动替换为你的真实 UUID），调用命令时不需要传入。
 
+接口地址支持两套：
+
+- 本地开发：`http://localhost:40251`
+- 正式环境：`https://api.tx07.cn/resource-hub`
+
+默认使用本地地址；如果要直连正式环境，请先设置：
+
+```bash
+export API_BASE_URL=https://api.tx07.cn/resource-hub
+```
+
+Windows PowerShell 可用：
+
+```powershell
+$env:API_BASE_URL = "https://api.tx07.cn/resource-hub"
+```
+
 ```bash
 # 创建资源（推荐用 JSON 文件传参）
 node scripts/resource-upload.js create "标题" "分类" ./payload.json

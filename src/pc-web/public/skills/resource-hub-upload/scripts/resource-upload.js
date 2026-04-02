@@ -14,7 +14,9 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:40251';
+const LOCAL_API_BASE_URL = 'http://localhost:40251';
+const PRODUCTION_API_BASE_URL = 'https://api.tx07.cn/resource-hub';
+const API_BASE_URL = process.env.API_BASE_URL || LOCAL_API_BASE_URL;
 const API_VERSION = '/api/v1';
 const USER_KEY = '{{USER_KEY}}';
 
@@ -110,6 +112,10 @@ if (!command) {
 
  使用方式：
    node resource-upload.js <command> [options]
+
+ 环境变量：
+   API_BASE_URL   默认 ${LOCAL_API_BASE_URL}
+                  正式环境可用 ${PRODUCTION_API_BASE_URL}
 
  命令：
    upload-image <filePath>              - 上传截图
